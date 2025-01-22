@@ -46,23 +46,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-moveit-commander \
     php libapache2-mod-php \
     && pip install flask \
-  && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/* 
 
-  RUN apt-get update && apt-get install -y \
-    && pip install flask \
-    && apt-get install ros-noetic-pointcloud-to-laserscan -y \
+RUN apt-get update && apt-get install -y \
+    ros-noetic-pointcloud-to-laserscan \
+    libasound2-dev \
+    python3 \
+    python3-pip \
     && pip install azure-cognitiveservices-speech \
-    && pip install python-dotenv \
-    && pip install openai \
-    && pip install playsound
+    python-dotenv \
+    openai \
+    playsound \
+    simpleaudio
 
-  RUN bash -c "source /opt/ros/noetic/setup.bash"
+RUN bash -c "source /opt/ros/noetic/setup.bash"
 
-  WORKDIR /
-  RUN git clone https://github.com/RonSilverman/TiaGo.git 
-  WORKDIR /TiaGo/tiago_common/
-  RUN python setup.py install
-  #RUN bash -c "python setup.py install"
-  WORKDIR /
+# Clone the repo
+RUN git clone https://github.com/JimmieThomson/TiaGo_TourGuide.git
 
-  ENTRYPOINT ["bash"]
+WORKDIR /TiaGo_TourGuide
+
+WORKDIR /TiaGo_TourGuide/TiagoTourGuide_ws/
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin clean -y && catkin build"
+
+# Set the entrypoint
+ENTRYPOINT ["/bin/bash", "-c", "source /TiaGo_TourGuide/TiagoTourGuide_ws/devel/setup.bash"]
