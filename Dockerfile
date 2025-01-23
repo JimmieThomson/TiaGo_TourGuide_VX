@@ -44,20 +44,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-catkin-tools \
     ros-noetic-actionlib-tools \
     ros-noetic-moveit-commander \
-    php libapache2-mod-php \
-    && pip install flask \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN apt-get update && apt-get install -y \
     ros-noetic-pointcloud-to-laserscan \
+    ros-noetic-move-base-msgs \
     libasound2-dev \
+    portaudio19-dev \
     python3 \
     python3-pip \
     && pip install azure-cognitiveservices-speech \
     python-dotenv \
     openai \
     playsound \
-    simpleaudio
+    simpleaudio \
+    && pip3 install pyaudio==0.2.9 --upgrade
 
 RUN bash -c "source /opt/ros/noetic/setup.bash"
 
@@ -68,6 +69,7 @@ WORKDIR /TiaGo_TourGuide
 
 WORKDIR /TiaGo_TourGuide/TiagoTourGuide_ws/
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin clean -y && catkin build"
+WORKDIR /TiaGo_TourGuide/
 
 # Set the entrypoint
-ENTRYPOINT ["/bin/bash", "-c", "source /TiaGo_TourGuide/TiagoTourGuide_ws/devel/setup.bash"]
+ENTRYPOINT ["/bin/bash", "-c", "./launch_Tour.sh"]
