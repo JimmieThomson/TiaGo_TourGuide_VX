@@ -12,11 +12,11 @@ sudo cp -r /home/pal/TiaGo_TourGuide/TiagoTourGuide_ws/src/pal_navigation_cfg_ti
 # !: This will not run unless these are copied to the repo
 
 # Note: mounted drive must be mounted from "/opt/pal/gallium/share/pal_navigation_cfg_tiago/config/base/common/" to /host/pal/common/
-sudo cp Inside Tiago/local_costmap_omni.yaml /host/pal/common/local_costmap.yaml
-sudo cp Inside Tiago/local_costmap_plugins_omni.yaml /host/pal/common/local_costmap_plugins.yaml 
-sudo cp Inside Tiago/local_costmap_omni.yaml /host/pal/common/local_costmap_omni.yaml
-sudo cp Inside Tiago/local_costmap_plugins_omni.yaml /host/pal/common/local_costmap_plugins_omni.yaml 
-sudo cp Inside Tiago/recovery_behaviors.yaml /host/pal/common/recovery_behaviors.yaml
+sudo cp "Inside Tiago/local_costmap_omni.yaml" /host/pal/common/local_costmap.yaml
+sudo cp "Inside Tiago/local_costmap_plugins_omni.yaml" /host/pal/common/local_costmap_plugins.yaml 
+sudo cp "Inside Tiago/local_costmap_omni.yaml" /host/pal/common/local_costmap_omni.yaml
+sudo cp "Inside Tiago/local_costmap_plugins_omni.yaml" /host/pal/common/local_costmap_plugins_omni.yaml 
+sudo cp "Inside Tiago/recovery_behaviors.yaml" /host/pal/common/recovery_behaviors.yaml
 
 source ./TiagoTourGuide_ws/devel/setup.bash
 roslaunch par_a3 run_all_nodes.launch

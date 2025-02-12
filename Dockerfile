@@ -44,15 +44,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-catkin-tools \
     ros-noetic-actionlib-tools \
     ros-noetic-moveit-commander \
-    && rm -rf /var/lib/apt/lists/* 
-
-RUN apt-get update && apt-get install -y \
     ros-noetic-pointcloud-to-laserscan \
     ros-noetic-move-base-msgs \
     libasound2-dev \
     portaudio19-dev \
-    python3 \
-    python3-pip \
+    && rm -rf /var/lib/apt/lists/* \
     && pip install azure-cognitiveservices-speech \
     python-dotenv \
     openai \

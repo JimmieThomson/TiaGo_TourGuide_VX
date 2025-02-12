@@ -3,7 +3,6 @@
 pal-stop move_base
 
 docker run -it --rm \
-    --platform linux/amd64 \
     --device /dev/snd \
     --group-add audio \
     --env="DISPLAY" \
